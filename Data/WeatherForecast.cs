@@ -1,6 +1,6 @@
 using System;
 
-namespace BlazorAuthenticationDemo.Data
+namespace AdminFrontEnd.Data
 {
     public class WeatherForecast
     {

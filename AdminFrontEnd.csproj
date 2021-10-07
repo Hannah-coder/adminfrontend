@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>aspnet-BlazorAuthenticationDemo-4FF37870-79E5-4D1B-9138-81FBEAA270FA</UserSecretsId>
+    <UserSecretsId>aspnet-AdminFrontEnd-CE5CDCAE-D2BE-456C-B7A7-5AD8674A9F2D</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

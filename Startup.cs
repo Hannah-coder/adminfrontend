@@ -1,5 +1,5 @@
-using BlazorAuthenticationDemo.Areas.Identity;
-using BlazorAuthenticationDemo.Data;
+using AdminFrontEnd.Areas.Identity;
+using AdminFrontEnd.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BlazorAuthenticationDemo
+namespace AdminFrontEnd
 {
     public class Startup
     {
@@ -33,12 +33,12 @@ namespace BlazorAuthenticationDemo
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"))); //Use connection string that comes from appsettings.json
+                    Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>(); //Provides current user information
+            services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddSingleton<WeatherForecastService>();
         }
@@ -63,12 +63,12 @@ namespace BlazorAuthenticationDemo
 
             app.UseRouting();
 
-            app.UseAuthentication(); //Middleware authentication that uses injected authentication services
-            app.UseAuthorization(); //Middleware authorization that uses injected authorization services
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers(); //Configures routing for default user interfaces
+                endpoints.MapControllers();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });

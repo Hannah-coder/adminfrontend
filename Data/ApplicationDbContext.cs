@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BlazorAuthenticationDemo.Data
+namespace AdminFrontEnd.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

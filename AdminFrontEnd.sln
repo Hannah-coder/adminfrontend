@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31727.386
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAuthenticationDemo", "BlazorAuthenticationDemo.csproj", "{CC61D7EA-C0AD-43AF-AA27-516881245E4E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminFrontEnd", "AdminFrontEnd.csproj", "{600F5520-9356-4039-9207-B57EEA5067DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CC61D7EA-C0AD-43AF-AA27-516881245E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC61D7EA-C0AD-43AF-AA27-516881245E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC61D7EA-C0AD-43AF-AA27-516881245E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC61D7EA-C0AD-43AF-AA27-516881245E4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{600F5520-9356-4039-9207-B57EEA5067DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{600F5520-9356-4039-9207-B57EEA5067DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{600F5520-9356-4039-9207-B57EEA5067DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{600F5520-9356-4039-9207-B57EEA5067DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {29D269C2-4E52-47B9-A9E3-2E21F046C171}
+		SolutionGuid = {06B803CB-B5AD-48F7-A58A-F72E54DD3506}
 	EndGlobalSection
 EndGlobal
