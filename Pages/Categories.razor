@@ -1,0 +1,57 @@
+﻿@page "/categories"
+@using AdminFrontEnd.Models
+@using System.Text.Json
+@using System.Text.Json.Serialization;
+@inject MonitoringAPIClient API
+
+<h1>Merchandise Filter</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+
+@if (merch == null)
+{
+<p><em>Loading...</em></p>
+}
+else
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Category</th>
+            <th>Date</th>
+            <th>Items found</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in merch)
+        {
+            <tr>
+                <td>@item.Id.ToString()</td>
+                <td>@item.Category</td>
+                <td>@item.DateAndTime</td>
+                <td>@item.NumberRecordsReturned</td>
+            </tr>
+       }
+    </tbody>
+</table>
+}
+<button class="btn btn-primary" @onclick="GetMerchandise">Get Merch</button>
+
+
+
+
+@code {
+
+    private IEnumerable<MerchandiseFilter> merch;
+    private IEnumerable<Session> sessions;
+
+    protected async Task GetMerchandise()
+    {
+        merch = await API.GetMerchandiseFilter();
+        StateHasChanged();
+    }
+}
+
+
