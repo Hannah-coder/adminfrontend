@@ -2,45 +2,48 @@
 @using AdminFrontEnd.Models
 @using System.Text.Json
 @using System.Text.Json.Serialization;
+@using System.Linq
 @inject MonitoringAPIClient API
 
-<h1>Merchandise Filter</h1>
+<h1>Current Categories</h1>
 
-<p>This component demonstrates fetching data from a service.</p>
-
+<p><a href="url">Add new Category</a></p>
 
 @if (merch == null)
 {
-<p><em>Loading...</em></p>
+    <p><em>Loading...</em></p>
 }
 else
 {
-<table class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Category</th>
-            <th>Date</th>
-            <th>Items found</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in merch)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>@item.Id.ToString()</td>
-                <td>@item.Category</td>
-                <td>@item.DateAndTime</td>
-                <td>@item.NumberRecordsReturned</td>
+                <th>Category</th>
+                <th></th>
+                <th></th>
+                
             </tr>
-       }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+
+            
+            @foreach (var item in merch)
+            {
+
+                if (item.Category != "string")
+                {
+                     <tr>
+                         <td>@item.Category</td>
+                         <td><a href="url">Edit</a></td>
+                         <td> <a href="url">Delete</a></td>
+
+                       </tr>
+                }
+            }
+        </tbody>
+    </table>
 }
-<button class="btn btn-primary" @onclick="GetMerchandise">Get Merch</button>
-
-
-
+<button class="btn btn-primary" @onclick="GetMerchandise">Get Categories</button>
 
 @code {
 
@@ -50,6 +53,7 @@ else
     protected async Task GetMerchandise()
     {
         merch = await API.GetMerchandiseFilter();
+
         StateHasChanged();
     }
 }
