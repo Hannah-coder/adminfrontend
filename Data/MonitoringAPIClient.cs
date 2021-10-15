@@ -25,5 +25,15 @@ namespace AdminFrontEnd
 
             return await response.Content.ReadAsAsync<IEnumerable<MerchandiseFilter>>();
         }
+
+        public async Task<IEnumerable<MerchandiseFilter>> GetMerchandiseByCategory(string category)
+        {
+            var response = await _httpClient.GetAsync($"MerchandiseFilter/ByCategory/{category}");
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadAsAsync<IEnumerable<MerchandiseFilter>>();
+        }
+
+
     }
 }
