@@ -1,0 +1,83 @@
+﻿@page "/categories"
+@using AdminFrontEnd.Models
+@using System.Text.Json
+@using System.Text.Json.Serialization;
+@using System.Linq
+@inject MonitoringAPIClient API
+
+<h1>Current Categories</h1>
+
+<p>
+    <br />
+    Filter by category
+    <select class="bold backgroundLightBlue" @onchange="@GetMerchandiseByCategory">
+        <option class="bold" value="0">Select a Category</option>
+        <option class="bold" value="All">All</option>
+        <option class="bold" value="Dog">Dog</option>
+        <option class="bold" value="Cat">Cat</option>
+        <option class="bold" value="Bird">Bird</option>
+        <option class="bold" value="Fish">Fish</option>
+        <option class="bold" value="Reptile">Reptile</option>
+        <option class="bold" value="Spider">Spider</option>
+        <option class="bold" value="Other">Other</option>
+    </select>
+</p>
+
+@if (merch == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+
+            @foreach (var item in merch)
+            {
+
+                if (item.Category != "string")
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Category</td>
+                        <td> <button class="btn btn-primary" @onclick="GetMerchandise">Delete Category</button> </td>  <!--ADD DELETE FUNCTION-->
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+
+    private IEnumerable<MerchandiseFilter> merch;
+    private IEnumerable<Session> sessions;
+
+    protected async Task GetMerchandise()
+    {
+        merch = await API.GetMerchandiseFilter();
+        StateHasChanged();
+    }
+
+    protected async Task GetMerchandiseByCategory(ChangeEventArgs e)
+    {
+        if (e.Value.ToString() != "All")
+            merch = await API.GetMerchandiseByCategory(e.Value.ToString());
+        else
+            merch = await API.GetMerchandiseFilter();
+
+        StateHasChanged();
+    }
+}
+
