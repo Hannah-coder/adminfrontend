@@ -41,6 +41,13 @@ namespace AdminFrontEnd
 
             return await response.Content.ReadAsAsync<IEnumerable<string>>();
         }
+        public async Task DeleteCategory(string category)
+        {
+            var response = await _httpClient.DeleteAsync($"MerchandiseFilter/DeleteAll/{category}");
+          
+
+        }
+
 
 
     }

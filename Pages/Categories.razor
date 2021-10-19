@@ -18,20 +18,19 @@ else
             <tr>
                 <th>Category</th>
                 <th></th>
+                <th></th>
 
             </tr>
         </thead>
         <tbody>
             @foreach (var item in categories)
             {
-
-                if (item != "string")
-                {
             <tr>
                 <td>@item</td>
-                <td> <button class="btn btn-primary" @onclick="GetMerchandise">Delete Category</button> </td>  
+                <td><button class="btn btn-danger" @onclick="() => DeleteClick(item)"> Delete @item Category </button></td>               
+                <td></td>
             </tr>
-                }
+                
             }
         </tbody>
     </table>
@@ -56,13 +55,9 @@ else
         StateHasChanged();
     }
 
-    protected async Task GetMerchandiseByCategory(ChangeEventArgs e)
-    {
-        if (e.Value.ToString() != "All")
-            merch = await API.GetMerchandiseByCategory(e.Value.ToString());
-        else
-            merch = await API.GetMerchandiseFilter();
-
+    protected async Task DeleteClick(string item)
+    { 
+        await API.DeleteCategory(item);
         StateHasChanged();
     }
 
