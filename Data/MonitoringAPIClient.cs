@@ -34,6 +34,21 @@ namespace AdminFrontEnd
             return await response.Content.ReadAsAsync<IEnumerable<MerchandiseFilter>>();
         }
 
+        public async Task<IEnumerable<string>> GetDistinctCategories()
+        {
+            var response = await _httpClient.GetAsync("MerchandiseFilter/Categories");
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadAsAsync<IEnumerable<string>>();
+        }
+        public async Task DeleteCategory(string category)
+        {
+            var response = await _httpClient.DeleteAsync($"MerchandiseFilter/DeleteAll/{category}");
+          
+
+        }
+
+
 
     }
 }
