@@ -75,12 +75,6 @@ namespace AdminFrontEnd
             return await response.Content.ReadAsAsync<IEnumerable<UserAccounts>>();
         }
 
-          
-
-      
-
- main
-
         public async Task DeleteUserAccount(int id)
         {
             var response = await _httpClient.DeleteAsync($"UserAccount/Delete/{id}");
