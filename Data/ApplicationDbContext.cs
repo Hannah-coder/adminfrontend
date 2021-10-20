@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using AdminFrontEnd.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,6 @@ namespace AdminFrontEnd.Data
             : base(options)
         {
         }
+        public DbSet<UserAccounts> UserAccounts { get; set; }
     }
 }
