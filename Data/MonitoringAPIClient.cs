@@ -1,4 +1,4 @@
-﻿using AdminFrontEnd.Models;
+using AdminFrontEnd.Models;
 using AdminFrontEnd.Pages;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -74,6 +74,12 @@ namespace AdminFrontEnd
 
             return await response.Content.ReadAsAsync<IEnumerable<UserAccounts>>();
         }
+
+          
+
+      
+
+ main
 
         public async Task DeleteUserAccount(int id)
         {
