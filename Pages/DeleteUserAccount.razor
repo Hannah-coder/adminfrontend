@@ -1,0 +1,60 @@
+﻿@page "/Delete/{id}"
+    @using AdminFrontEnd.Models
+    @using AdminFrontEnd.Services
+    @inject NavigationManager NavigationManager
+    @inject MonitoringAPIClient API
+
+    <h3>Delete User Account</h3>
+    <hr />
+    <h6>Are you sure you want to delete this record?</h6>
+
+    <form>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label>Username</label>
+                    <label>@userAccount.UserUserName</label>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <label>@userAccount.UserEmail</label>
+                </div>
+                <div class="form-group">
+                    <label>Role</label>
+                    <label>@userAccount.UserRole</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+    <input type="button" class="btn btn-danger" @onclick="@Delete" value="Delete" />
+    <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Cancel" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+    @code {
+
+        [Parameter]
+        public int id { get; set; }
+        UserAccounts userAccount = new UserAccounts();
+        private UserAccounts user;
+
+        protected async Task GetUser()
+        {
+            user = await API.GetUserAccount(id);
+            StateHasChanged();
+        }
+        protected async void Delete()
+        {
+            await API.DeleteUserAccount(id);
+            NavigationManager.NavigateTo("Users");
+        }
+        void Cancel()
+        {
+            NavigationManager.NavigateTo("Users");
+        }
+    }

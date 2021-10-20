@@ -1,9 +1,21 @@
-﻿@page "/users"
+﻿@using AdminFrontEnd.Models
+@using AdminFrontEnd.Services
+@page "/Users"
+@inject MonitoringAPIClient API
+@inject UserAccountService userAccountService
 
-    <h1>User Accounts</h1>
-    <p><a href="url">Add User</a></p>
-
-    <table class="table">
+<h1>User Accounts</h1>
+<p>
+    <button class="btn btn-primary" @onclick="GetUsers">Get Users</button>
+    <a href='/createuseraccount'>Add User</a>
+</p>
+@if (users == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class='table'>
         <thead>
             <tr>
                 <th>Username</th>
@@ -11,19 +23,33 @@
                 <th>Role</th>
                 <th></th>
                 <th></th>
-
             </tr>
         </thead>
         <tbody>
+            @foreach (var item in users)
+            {
             <tr>
-                <td>UsernameGoesHere</td>
-                <td>EmailGoesHere</td>
-                <td>RoleGoesHere</td>
-                <td><a href="url">Edit</a></td>
-                <td> <a href="url">Delete</a></td>
-
+                <td>@item.UserUserName</td>
+                <td>@item.UserEmail</td>
+                <td>@item.UserRole</td>
+                <td>
+                    <a href='/Edit/@item.UserId'>Edit</a>  |
+                    <a href='/Delete/@item.UserId'>Delete</a>
+                </td>
             </tr>
+
+            }
         </tbody>
     </table>
+}
 
+@code {
+    private IEnumerable<UserAccounts> users;
+    private UserAccounts user;
 
+    protected async Task GetUsers()
+    {
+        users = await API.GetAllUserAccounts();
+        StateHasChanged();
+    }
+}

@@ -1,4 +1,6 @@
-﻿using AdminFrontEnd.Models;
+using AdminFrontEnd.Models;
+using AdminFrontEnd.Pages;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,11 +46,44 @@ namespace AdminFrontEnd
         public async Task DeleteCategory(string category)
         {
             var response = await _httpClient.DeleteAsync($"MerchandiseFilter/DeleteAll/{category}");
-          
-
         }
 
+        public async Task<IEnumerable<UserAccounts>> GetAllUserAccounts()
+        {
+            var response = await _httpClient.GetAsync("UserAccount");
+            response.EnsureSuccessStatusCode();
 
+            return await response.Content.ReadAsAsync<IEnumerable<UserAccounts>>();
+        }
 
+        public async Task<UserAccounts> GetUserAccount(int id)
+        {
+            var response = await _httpClient.GetAsync($"UserAccount/{id}");
+            return (UserAccounts)await response.Content.ReadAsAsync<IEnumerable<UserAccounts>>();
+        }
+
+        public async Task CreateUserAccount(UserAccounts user)
+        {
+            var response = await _httpClient.PostAsJsonAsync("UserAccount", user);
+        }
+
+        public async Task<IEnumerable<UserAccounts>> UpdateById(string id)
+        {
+            var response = await _httpClient.GetAsync($"UserAccount/Update/{id}");
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadAsAsync<IEnumerable<UserAccounts>>();
+        }
+
+          
+
+      
+
+ main
+
+        public async Task DeleteUserAccount(int id)
+        {
+            var response = await _httpClient.DeleteAsync($"UserAccount/Delete/{id}");
+        }
     }
 }
