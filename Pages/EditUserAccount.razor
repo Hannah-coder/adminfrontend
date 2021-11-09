@@ -11,16 +11,16 @@
     <div class="row">
         <div class="col-md-8">
             <div class="form-group">
-                <input form="UserUserName" class="form-control" @bind="@userAccount.UserId" />
+                <input form="UserUserName" class="form-control" @bind="@user.UserId" />
             </div>
             <div class="form-group">
                 <label for="UserUserName" class="control-label">Username</label>
-                <input form="UserUserName" class="form-control" @bind="@userAccount.UserUserName" />
+                <input form="UserUserName" class="form-control" @bind="@user.UserUserName" />
             </div>
             <div>
                 <label for="UserRole" class="control-label">Role</label>
-                <select @bind="@userAccount.UserRole" class="form-control">
-                    <option value="">-Select Role</option>
+                <select @bind="@user.UserRole" class="form-control">
+                    <option value="">-Select Role-</option>
                     <option value="User">User</option>
                     <option value="Admin">Admin</option>
                 </select>
@@ -39,13 +39,32 @@
 </form>
 
 @code {
+    [Parameter]
+
+    public string id { get; set; }
+    public int intId;
     UserAccounts userAccount = new UserAccounts();
-    private void Cancel()
+    private UserAccounts user = new UserAccounts();
+    protected override async void OnInitialized()
     {
-
+        await GetUser();
     }
-    private void Update()
+
+    protected async Task GetUser()
     {
-
+        intId = int.Parse(id);
+        user = await API.GetUserAccount(intId);
+        StateHasChanged();
     }
+    protected async void Update()
+    {
+        intId = int.Parse(id);
+        await API.UpdateById(user);
+        NavigationManager.NavigateTo("Users");
+    }
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("Users");
+    }
+
 }

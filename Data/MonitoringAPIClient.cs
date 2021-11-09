@@ -67,12 +67,13 @@ namespace AdminFrontEnd
             var response = await _httpClient.PostAsJsonAsync("UserAccount", user);
         }
 
-        public async Task<IEnumerable<UserAccounts>> UpdateById(string id)
+        public async Task<UserAccounts> UpdateById(UserAccounts user)
         {
-            var response = await _httpClient.GetAsync($"UserAccount/Update/{id}");
+            var response = await _httpClient.PutAsJsonAsync("UserAccount", user);
             response.EnsureSuccessStatusCode();
 
-            return await response.Content.ReadAsAsync<IEnumerable<UserAccounts>>();
+            return await response.Content.ReadAsAsync<UserAccounts>();
+            //return await response.Content.ReadAsAsync<IEnumerable<UserAccounts>>();
         }
 
         public async Task DeleteUserAccount(int id)
