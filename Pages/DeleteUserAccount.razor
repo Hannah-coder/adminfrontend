@@ -12,16 +12,16 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="form-group">
-                    <label>Username</label>
-                    <label>@userAccount.UserUserName</label>
+                    <label>Username: &nbsp</label>
+                    <label>@user.UserUserName</label>
                 </div>
                 <div class="form-group">
-                    <label>Email</label>
-                    <label>@userAccount.UserEmail</label>
+                    <label>Email: &nbsp</label>
+                    <label>@user.UserEmail</label>
                 </div>
                 <div class="form-group">
-                    <label>Role</label>
-                    <label>@userAccount.UserRole</label>
+                    <label>Role: &nbsp</label>
+                    <label>@user.UserRole</label>
                 </div>
             </div>
         </div>
@@ -39,18 +39,26 @@
     @code {
 
         [Parameter]
-        public int id { get; set; }
+
+        public string id { get; set;}
+        public int intId;
         UserAccounts userAccount = new UserAccounts();
-        private UserAccounts user;
+        private UserAccounts user = new UserAccounts();
+        protected override async void OnInitialized()
+        {
+            await GetUser();
+        }
 
         protected async Task GetUser()
         {
-            user = await API.GetUserAccount(id);
+            intId = int.Parse(id);
+            user = await API.GetUserAccount(intId);
             StateHasChanged();
         }
         protected async void Delete()
         {
-            await API.DeleteUserAccount(id);
+            intId = int.Parse(id);
+            await API.DeleteUserAccount(intId);
             NavigationManager.NavigateTo("Users");
         }
         void Cancel()

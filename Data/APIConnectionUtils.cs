@@ -7,6 +7,6 @@ namespace AdminFrontEnd
 {
     public class APIConnectionUtils
     {
-        public static string HostAddress = "https://api20211004162624.azurewebsites.net/";
+        public static string HostAddress = "https://api20211105132600.azurewebsites.net/";
     }
 }

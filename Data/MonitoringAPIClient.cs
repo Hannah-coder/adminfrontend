@@ -59,7 +59,7 @@ namespace AdminFrontEnd
         public async Task<UserAccounts> GetUserAccount(int id)
         {
             var response = await _httpClient.GetAsync($"UserAccount/{id}");
-            return (UserAccounts)await response.Content.ReadAsAsync<IEnumerable<UserAccounts>>();
+            return (UserAccounts)await response.Content.ReadAsAsync<UserAccounts>();
         }
 
         public async Task CreateUserAccount(UserAccounts user)
@@ -77,7 +77,7 @@ namespace AdminFrontEnd
 
         public async Task DeleteUserAccount(int id)
         {
-            var response = await _httpClient.DeleteAsync($"UserAccount/Delete/{id}");
+            var response = await _httpClient.DeleteAsync($"UserAccount/{id}");
         }
     }
 }
