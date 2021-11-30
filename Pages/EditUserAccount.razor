@@ -11,11 +11,19 @@
     <div class="row">
         <div class="col-md-8">
             <div class="form-group">
-                <input form="UserUserName" class="form-control" @bind="@user.UserId" />
+                <input form="UserUserName" class="form-control" hidden @bind="@user.UserId" />
             </div>
             <div class="form-group">
                 <label for="UserUserName" class="control-label">Username</label>
                 <input form="UserUserName" class="form-control" @bind="@user.UserUserName" />
+            </div>
+            <div class="form-group">
+                <label for="UserPassword" class="control-label">Password</label>
+                <input form="UserPassword" class="form-control" @bind="@user.UserPassword" />
+            </div>
+            <div class="form-group">
+                <label for="UserPassword" class="control-label">Email</label>
+                <input form="UserPassword" class="form-control" @bind="@user.UserEmail" />
             </div>
             <div>
                 <label for="UserRole" class="control-label">Role</label>

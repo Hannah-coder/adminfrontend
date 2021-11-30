@@ -16,5 +16,7 @@ namespace AdminFrontEnd.Models
         public string UserEmail { get; set; }
         [Required]
         public string UserRole { get; set; }
+        [Required]
+        public string UserPassword { get; set; }
     }
 }
